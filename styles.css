@@ -1,0 +1,589 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Sparkles Background */
+.sparkles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.sparkle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #fff;
+  border-radius: 50%;
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Hearts Container */
+.hearts-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.floating-heart {
+  position: absolute;
+  font-size: 24px;
+  animation: floatUp 4s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes floatUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(0) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-50vh) scale(1) rotate(180deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100vh) scale(0.5) rotate(360deg);
+  }
+}
+
+/* Main Content */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.title {
+  font-family: "Dancing Script", cursive;
+  font-size: clamp(3rem, 8vw, 5rem);
+  color: #ff6b9d;
+  text-shadow: 0 0 20px rgba(255, 107, 157, 0.5), 0 0 40px rgba(255, 107, 157, 0.3);
+  animation: glow 2s ease-in-out infinite alternate;
+  text-align: center;
+}
+
+.subtitle {
+  font-family: "Dancing Script", cursive;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  color: #fff;
+  margin-bottom: 40px;
+  animation: fadeInUp 1s ease-out 0.3s both;
+  text-align: center;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 20px rgba(255, 107, 157, 0.5);
+  }
+  to {
+    text-shadow: 0 0 40px rgba(255, 107, 157, 0.8), 0 0 60px rgba(255, 107, 157, 0.4);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Cake Container */
+.cake-container {
+  margin: 20px 0 40px;
+  animation: fadeInUp 1s ease-out 0.5s both;
+}
+
+.cake {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.candles {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 5px;
+}
+
+.candle-row {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.candle {
+  width: 8px;
+  height: 35px;
+  background: linear-gradient(to bottom, #ffd700, #ffb347);
+  border-radius: 2px 2px 0 0;
+  position: relative;
+}
+
+.flame {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 18px;
+  background: linear-gradient(to top, #ff6b35, #ffd700, #fff);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  animation: flicker 0.3s ease-in-out infinite alternate;
+}
+
+@keyframes flicker {
+  0% {
+    transform: translateX(-50%) scale(1) rotate(-2deg);
+  }
+  100% {
+    transform: translateX(-50%) scale(1.1) rotate(2deg);
+  }
+}
+
+.age-badge {
+  position: absolute;
+  top: 60px;
+  background: #ff6b9d;
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 50%;
+  z-index: 10;
+  box-shadow: 0 0 20px rgba(255, 107, 157, 0.6);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.cake-top {
+  width: 180px;
+  height: 50px;
+  background: linear-gradient(to bottom, #ff9a9e 0%, #fecfef 100%);
+  border-radius: 10px 10px 0 0;
+  position: relative;
+  border: 4px solid #fff;
+  border-bottom: none;
+}
+
+.cake-top::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: -4px;
+  right: -4px;
+  height: 15px;
+  background: #fff;
+  border-radius: 10px 10px 0 0;
+}
+
+.cake-middle {
+  width: 220px;
+  height: 60px;
+  background: linear-gradient(to bottom, #a8edea 0%, #fed6e3 100%);
+  border: 4px solid #fff;
+  border-top: none;
+  border-bottom: none;
+  position: relative;
+}
+
+.cake-middle::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -4px;
+  right: -4px;
+  height: 15px;
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.5));
+}
+
+.cake-bottom {
+  width: 260px;
+  height: 70px;
+  background: linear-gradient(to bottom, #ffecd2 0%, #fcb69f 100%);
+  border-radius: 0 0 20px 20px;
+  border: 4px solid #fff;
+  border-top: none;
+}
+
+.cake-decoration {
+  position: absolute;
+  bottom: 20px;
+  display: flex;
+  gap: 15px;
+  font-size: 1.2rem;
+  animation: bounce 1s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Open Letter Button */
+.open-letter-btn {
+  background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
+  color: white;
+  border: none;
+  padding: 20px 40px;
+  font-size: 1.3rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 10px 40px rgba(255, 107, 157, 0.4);
+  transition: all 0.3s ease;
+  animation: fadeInUp 1s ease-out 0.8s both, buttonPulse 2s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+.open-letter-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shine 3s ease-in-out infinite;
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  50%,
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes buttonPulse {
+  0%,
+  100% {
+    box-shadow: 0 10px 40px rgba(255, 107, 157, 0.4);
+  }
+  50% {
+    box-shadow: 0 15px 60px rgba(255, 107, 157, 0.6);
+  }
+}
+
+.open-letter-btn:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 20px 60px rgba(255, 107, 157, 0.5);
+}
+
+.btn-icon,
+.btn-hearts {
+  font-size: 1.5rem;
+}
+
+/* Letter Modal */
+.letter-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.letter-modal.active {
+  display: flex;
+}
+
+.letter-content {
+  background: linear-gradient(135deg, #fff5f5 0%, #ffe4e8 100%);
+  border-radius: 30px;
+  padding: 40px;
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 30px 100px rgba(255, 107, 157, 0.3);
+  animation: letterOpen 0.6s ease-out;
+}
+
+@keyframes letterOpen {
+  from {
+    opacity: 0;
+    transform: scale(0.5) rotateX(-30deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotateX(0);
+  }
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: #ff6b9d;
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+  background: #c44569;
+  transform: rotate(90deg);
+}
+
+.letter-header h2 {
+  font-family: "Dancing Script", cursive;
+  font-size: 2rem;
+  color: #c44569;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.letter-body {
+  padding: 20px 0;
+}
+
+.greeting {
+  font-family: "Dancing Script", cursive;
+  font-size: 1.8rem;
+  color: #c44569;
+  margin-bottom: 15px;
+}
+
+.message {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 15px;
+  text-align: justify;
+}
+
+.signature {
+  font-family: "Dancing Script", cursive;
+  font-size: 1.5rem;
+  color: #c44569;
+  text-align: right;
+  margin-top: 20px;
+}
+
+.signature span {
+  display: block;
+  font-size: 1.2rem;
+  margin-top: 5px;
+}
+
+/* Photo Gallery */
+.photo-gallery {
+  margin: 30px 0;
+}
+
+.photo-gallery h3 {
+  font-family: "Dancing Script", cursive;
+  font-size: 1.8rem;
+  color: #c44569;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 15px;
+}
+
+.photo-item {
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  aspect-ratio: 1;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.photo-item:hover {
+  transform: scale(1.05) rotate(2deg);
+  box-shadow: 0 10px 30px rgba(255, 107, 157, 0.3);
+}
+
+.photo-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 107, 157, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.photo-item:hover .photo-overlay {
+  opacity: 1;
+}
+
+/* Spotify Container */
+.spotify-container {
+  margin: 30px 0;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+}
+
+.spotify-container h3 {
+  font-family: "Dancing Script", cursive;
+  font-size: 1.8rem;
+  color: #c44569;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* Letter Footer */
+.letter-footer {
+  text-align: center;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 2px dashed #ffb6c1;
+}
+
+.letter-footer p {
+  font-family: "Dancing Script", cursive;
+  font-size: 2rem;
+  color: #c44569;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.footer-hearts {
+  font-size: 2rem;
+  margin-top: 10px;
+  animation: bounce 1s ease-in-out infinite;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .letter-content {
+    padding: 25px;
+  }
+
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .subtitle {
+    font-size: 1.8rem;
+  }
+
+  .open-letter-btn {
+    padding: 15px 25px;
+    font-size: 1rem;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .cake-top {
+    width: 140px;
+    height: 40px;
+  }
+  .cake-middle {
+    width: 170px;
+    height: 50px;
+  }
+  .cake-bottom {
+    width: 200px;
+    height: 55px;
+  }
+
+  .candle {
+    width: 6px;
+    height: 25px;
+  }
+
+  .candle-row {
+    gap: 5px;
+  }
+
+  .age-badge {
+    font-size: 1.5rem;
+    padding: 8px 15px;
+    top: 45px;
+  }
+}
